@@ -21,7 +21,7 @@ public class Game {
             String line = sc.nextLine();
             // .nextInt() reads string of characters and convert them into int:
             if(rand.nextInt(n) == 0) {
-                // name of movie at particular line: 
+                // name of movie at particular line:
                 movie = line;
             }
         }
