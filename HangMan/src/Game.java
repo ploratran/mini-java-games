@@ -2,6 +2,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Game {
     public static void main (String[] args) throws FileNotFoundException {
@@ -11,20 +13,24 @@ public class Game {
         // generate random number:
         Random rand = new Random();
 
-        String movie = null;
-        int n = 0;
+        // initialize an Array List of movies:
+        ArrayList<String> movies = new ArrayList<String>();
+
+        // Read movies in movieList.txt:
+        Scanner scanner = new Scanner(file);
 
         // iterate over each line in file
         // check if there exists next line by .hasNext():
-        for(Scanner sc = new Scanner(file); sc.hasNext(); ) {
-            n++;
-            String line = sc.nextLine();
-            // .nextInt() reads string of characters and convert them into int:
-            if(rand.nextInt(n) == 0) {
-                // name of movie at particular line:
-                movie = line;
-            }
+        while (scanner.hasNextLine()) {
+            movies.add(scanner.nextLine());
         }
-        System.out.println(movie);
+
+        Iterator i = movies.iterator();
+
+        // iterate over each character in movie title:
+        while (i.hasNext()) {
+            System.out.println(i.next());
+        }
+
     }
 }
