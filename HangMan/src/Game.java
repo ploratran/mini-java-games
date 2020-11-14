@@ -1,10 +1,17 @@
-import java.util.*;
-import java.io.*;
 
+
+// all game logic here:
 public class Game {
-    public static void main (String[] args) {
+    // Fields:
+    public String guessMovie;
 
-        MovieList movieList = new MovieList("movieList.txt");
-        movieList.generateRandomMovie();
+    // Constructor:
+    // initialize a MovieList object with file name:
+    public Game(String pathName) {
+        MovieList movieList = new MovieList(pathName);
+        // define guess movie name from .getRandomMovie() in MovieList object:
+        guessMovie = movieList.generateRandomMovie();
     }
+
+    // Methods:
 }
