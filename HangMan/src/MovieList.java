@@ -29,6 +29,7 @@ public class MovieList {
 
     // define method to generate random movie from movies list:
     public String generateRandomMovie() {
+        // generate random number from 1 to movie title length:
         int randomIndex = (int) (Math.random() * this.movies.size()) + 1;
         // return movie at randomIndex in array list "movies":
         return this.movies.get(randomIndex-1);

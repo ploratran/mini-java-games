@@ -9,7 +9,15 @@ public class Main {
         System.out.println("Guess movie is: " + game.guessMovie);
 
         System.out.println("Welcome to Hang Man Game. Let's get started!\n");
-        System.out.println("The movie title has with " + game.hiddenMovieTitleNoSpaces() + " characters.");
-        System.out.println(game.hiddenMovieTitle());
+        System.out.println("The movie title has with " + game.numOfCharacters() + " characters.");
+
+
+        // set condition while game has not ended:
+        while (!game.gameEnded()) {
+            System.out.println(game.getHiddenMovieTitle());
+            System.out.println("Your wrong characters:" + game.wrongChars);
+            // guess game starts:
+            game.guessGame();
+        }
     }
 }
