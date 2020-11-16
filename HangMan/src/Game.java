@@ -41,7 +41,9 @@ public class Game {
      * handle Exception error
      * 2) check if input is character
      * if input is different than character, log error and re-prompt
-     * 3)
+     * 3) check if character is already guessed
+     * by check if characters is already exists in "rightChars" or "wrongChars"
+     * recursive call method again to re-prompt
      */
     public String getInputCharacter() {
 
@@ -54,7 +56,6 @@ public class Game {
             // .nextLine() to read input with spaces and till the end of line:
             // .toLowerCase() to handle upper case title:
             letter = scanner.nextLine().toLowerCase();
-            System.out.println(letter);
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
@@ -63,6 +64,11 @@ public class Game {
         // recursive call to ask for another input:
         if (!letter.matches("[a-zA-z]")) {
             System.out.println("Input has to be a letter!");
+            return getInputCharacter();
+        }
+        // check if input character is already guessed:
+        if (this.rightChars.contains(letter) || this.wrongChars.contains(letter)) {
+            System.out.println("Letter is already guessed.\n");
             return getInputCharacter();
         }
 
@@ -83,12 +89,14 @@ public class Game {
         String guessedCharacter = getInputCharacter();
 
         if (this.guessMovie.contains(guessedCharacter)) {
-            this.rightChars += guessedCharacter;
-            System.out.println("Right chars: " + this.rightChars + " ");
+            // include both uppercase and lowercase character in rightChars string:
+            this.rightChars += guessedCharacter + guessedCharacter.toUpperCase() + " ";
+            System.out.println("Right chars: " + this.rightChars);
         } else {
             this.wrongChars += " " + guessedCharacter;
             System.out.println("Wrong chars: " + this.wrongChars);
             this.point++;
+            System.out.println("Point " + this.point);
         }
     }
 
@@ -111,5 +119,9 @@ public class Game {
         }
 
         return false;
+    }
+
+    public boolean WonGame() {
+        return this.hasWon;
     }
 }

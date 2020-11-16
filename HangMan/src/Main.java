@@ -15,9 +15,17 @@ public class Main {
         // set condition while game has not ended:
         while (!game.gameEnded()) {
             System.out.println(game.getHiddenMovieTitle());
-            System.out.println("Your wrong characters:" + game.wrongChars);
+            // System.out.println("Your wrong characters:" + game.wrongChars);
             // guess game starts:
             game.guessGame();
         }
+
+        // determine game win or lose:
+        if (game.WonGame()) {
+            System.out.println("You win!");
+        } else {
+            System.out.println("You lose!");
+        }
+        System.out.println("The hidden movie is: " + game.guessMovie);
     }
 }
