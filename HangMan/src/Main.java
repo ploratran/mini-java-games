@@ -13,7 +13,6 @@ public class Main {
         // set condition while game has not ended:
         while (!game.gameEnded()) {
             System.out.println(game.getHiddenMovieTitle());
-            // System.out.println("Your wrong characters:" + game.wrongChars);
             // guess game starts:
             game.guessGame();
         }
@@ -21,10 +20,10 @@ public class Main {
         // determine game win or lose:
         if (game.WonGame()) {
             System.out.println("\nYou win!");
-            System.out.println("The hidden movie is: " + game.guessMovie);
+            System.out.println("The hidden movie is: " + game.getGuessMovie());
         } else {
             System.out.println("\nYou lose!");
-            System.out.println("The hidden movie is: " + game.guessMovie);
+            System.out.println("The hidden movie is: " + game.getGuessMovie());
             System.out.println("Good luck next time!");
         }
 

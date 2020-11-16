@@ -3,11 +3,11 @@ import java.util.*;
 // all game logic here:
 public class Game {
     // Fields:
-    public String guessMovie;
-    public String rightChars;
-    public String wrongChars;
-    public int point;
-    public boolean hasWon;
+    private String guessMovie;
+    private String rightChars;
+    private String wrongChars;
+    private int point;
+    private boolean hasWon;
 
     // Constructor:
     // initialize a MovieList object with file name:
@@ -27,17 +27,27 @@ public class Game {
      * Method to hide guessMovie with "_"
      * 1) hide all characters with underscores when game first starts
      * meaning when "rightChars" equals empty string
-     * 2) reveal correctly guessed characters when "rightChars" have correctly guessed letter added
+     * 2) when "rightChar" is not empty, start to reveal correctly guessed characters
+     * use ^ regex to NOT replace rightChars with underscore
+     *
      */
     public String getHiddenMovieTitle() {
+        // when "rightChars" is an empty string
+        // is when no characters have been guessed yet:
         if (this.rightChars.equals("")) {
             return this.guessMovie.replaceAll("[a-zA-Z]", "_");
         }
+        // revealed correctly guessed characters in "rightChars" string:
+        // all other characters remain hidden with underscore:
         else {
             return this.guessMovie.replaceAll("[a-zA-Z&&[^" + this.rightChars + "]]", "_");
         }
     }
 
+    /**
+     * Method to let users know how many characters they have to guess
+     * @return number of characters in movie title
+     */
     public int numOfCharacters() {
         // get the number of characters in movie title, exclude spaces:
         return this.guessMovie.replaceAll("\\s", "").length();
@@ -53,7 +63,7 @@ public class Game {
      * by check if characters is already exists in "rightChars" or "wrongChars"
      * recursive call method again to re-prompt
      */
-    public String getInputCharacter() {
+    private String getInputCharacter() {
 
         System.out.println("\nGuess a letter: ");
         String letter = null;
@@ -139,7 +149,15 @@ public class Game {
         return false;
     }
 
+    /**
+     * Method to return whether the game has ended or not
+     * @return boolean of game has won or lose:
+     */
     public boolean WonGame() {
         return this.hasWon;
+    }
+
+    public String getGuessMovie() {
+        return this.guessMovie;
     }
 }
