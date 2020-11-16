@@ -8,7 +8,7 @@ public class Main {
 
         System.out.println("Guess movie is: " + game.guessMovie);
 
-        System.out.println("Welcome to Hang Man Game. Let's get started!\n");
+        System.out.println("Welcome to Hang Man Game. You have 10 points to win. Let's get started!\n");
         System.out.println("The movie title has with " + game.numOfCharacters() + " characters.");
 
 
@@ -22,9 +22,9 @@ public class Main {
 
         // determine game win or lose:
         if (game.WonGame()) {
-            System.out.println("You win!");
+            System.out.println("\nYou win!");
         } else {
-            System.out.println("You lose!");
+            System.out.println("\nYou lose!");
         }
         System.out.println("The hidden movie is: " + game.guessMovie);
     }

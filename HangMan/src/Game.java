@@ -18,7 +18,7 @@ public class Game {
         // System.out.println(guessMovie.replaceAll("\\s", "").length());
         rightChars = "";
         wrongChars = "";
-        point = 0;
+        point = 10;
         hasWon = false;
     }
 
@@ -95,8 +95,14 @@ public class Game {
         } else {
             this.wrongChars += " " + guessedCharacter;
             System.out.println("Wrong chars: " + this.wrongChars);
-            this.point++;
-            System.out.println("Point " + this.point);
+            this.point--;
+
+            if (this.point > 1) {
+                System.out.println("You have " + this.point + " points left");
+            }
+            if (this.point == 1) {
+                System.out.println("You have " + this.point + " point left");
+            }
         }
     }
 
@@ -108,7 +114,7 @@ public class Game {
      */
     public boolean gameEnded() {
         // when point reaches 10 => lose game:
-        if (this.point >= 10) {
+        if (this.point <= 0) {
             return true;
         }
 
