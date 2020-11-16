@@ -6,8 +6,6 @@ public class Main {
         // initialize new game with movies in movieList.txt:
         Game game = new Game("movieList.txt");
 
-        System.out.println("Guess movie is: " + game.guessMovie);
-
         System.out.println("Welcome to Hang Man Game. You have 10 points to win. Let's get started!\n");
         System.out.println("The movie title has with " + game.numOfCharacters() + " characters.");
 
@@ -23,9 +21,12 @@ public class Main {
         // determine game win or lose:
         if (game.WonGame()) {
             System.out.println("\nYou win!");
+            System.out.println("The hidden movie is: " + game.guessMovie);
         } else {
             System.out.println("\nYou lose!");
+            System.out.println("The hidden movie is: " + game.guessMovie);
+            System.out.println("Good luck next time!");
         }
-        System.out.println("The hidden movie is: " + game.guessMovie);
+
     }
 }

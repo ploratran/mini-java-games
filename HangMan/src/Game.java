@@ -25,9 +25,17 @@ public class Game {
     // Methods:
     /**
      * Method to hide guessMovie with "_"
+     * 1) hide all characters with underscores when game first starts
+     * meaning when "rightChars" equals empty string
+     * 2) reveal correctly guessed characters when "rightChars" have correctly guessed letter added
      */
     public String getHiddenMovieTitle() {
-        return this.guessMovie.replaceAll("[a-zA-Z]", "_");
+        if (this.rightChars.equals("")) {
+            return this.guessMovie.replaceAll("[a-zA-Z]", "_");
+        }
+        else {
+            return this.guessMovie.replaceAll("[a-zA-Z&&[^" + this.rightChars + "]]", "_");
+        }
     }
 
     public int numOfCharacters() {
@@ -47,7 +55,7 @@ public class Game {
      */
     public String getInputCharacter() {
 
-        System.out.println("Guess a letter: ");
+        System.out.println("\nGuess a letter: ");
         String letter = null;
 
         try {
@@ -68,7 +76,7 @@ public class Game {
         }
         // check if input character is already guessed:
         if (this.rightChars.contains(letter) || this.wrongChars.contains(letter)) {
-            System.out.println("Letter is already guessed.\n");
+            System.out.println("Letter is already guessed. Guess again!");
             return getInputCharacter();
         }
 
@@ -88,20 +96,24 @@ public class Game {
         // get user input:
         String guessedCharacter = getInputCharacter();
 
+        // concatenate correct letter into "rightChars" string:
         if (this.guessMovie.contains(guessedCharacter)) {
             // include both uppercase and lowercase character in rightChars string:
             this.rightChars += guessedCharacter + guessedCharacter.toUpperCase() + " ";
-            System.out.println("Right chars: " + this.rightChars);
+            // System.out.println("Right chars: " + this.rightChars);
+
+        // concatenate wrong letter into "wrongChars" string:
+        // decrement point to indicate lose point:
         } else {
             this.wrongChars += " " + guessedCharacter;
-            System.out.println("Wrong chars: " + this.wrongChars);
+            System.out.println("\nYou have guessed: [" + this.wrongChars + " ] wrong!");
             this.point--;
 
             if (this.point > 1) {
-                System.out.println("You have " + this.point + " points left");
+                System.out.println("You have " + this.point + " points left. Guess again: \n");
             }
             if (this.point == 1) {
-                System.out.println("You have " + this.point + " point left");
+                System.out.println("You have " + this.point + " point left\n");
             }
         }
     }
